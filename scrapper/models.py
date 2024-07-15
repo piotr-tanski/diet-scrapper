@@ -22,7 +22,7 @@ def get_diet(diet):
 def _get_maczfit():
     meals = defaultdict(list)
     driver = _get_chrome_driver()
-    for diet in ['comfort', 'vege', 'fit', 'wegan', 'fodmap', 'no-lactose-&-low-gluten', 'diabetic', 'hypo-hashimoto', 'keto']:
+    for diet in ['comfort', 'vege', 'fit', 'fodmap', 'no-lactose-&-low-gluten', 'diabetic', 'hypo-hashimoto']:
         print(f"Getting {diet} from maczfit")
 
         driver.get(f'https://www.maczfit.pl/programy-maczfit?diet={diet}&active=0')
