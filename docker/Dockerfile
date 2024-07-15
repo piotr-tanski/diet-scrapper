@@ -10,14 +10,14 @@ RUN apt-get -y update \
     && pip install Django \
     && pip install selenium
 
-RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip \
-    && unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+RUN wget -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/`curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE`/linux64/chromedriver-linux64.zip \
+    && unzip /tmp/chromedriver-linux64.zip \
+    && mv chromedriver-linux64/chromedriver /usr/local/bin/
 
 RUN git clone https://github.com/piotr-tanski/diet-scrapper.git
 
 COPY runserver.sh /usr/local/bin/runserver.sh
 RUN chmod +x /usr/local/bin/runserver.sh
 
-EXPOSE 58253
 ENV DISPLAY=:99
 CMD ["runserver.sh"]
