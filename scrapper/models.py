@@ -20,11 +20,11 @@ def get_diet(diet):
 
 
 def _get_maczfit():
-    driver = _get_chrome_driver()
-    diets = ['comfort', 'vege', 'fit', 'wegan', 'fodmap', 'no-lactose-&-low-gluten', 'diabetic', 'hypo-hashimoto', 'keto']
     meals = defaultdict(list)
-    for diet in diets:
+    driver = _get_chrome_driver()
+    for diet in ['comfort', 'vege', 'fit', 'wegan', 'fodmap', 'no-lactose-&-low-gluten', 'diabetic', 'hypo-hashimoto', 'keto']:
         print(f"Getting {diet} from maczfit")
+
         driver.get(f'https://www.maczfit.pl/programy-maczfit?diet={diet}&active=0')
         element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'menu__meals')))
         if not element:
@@ -44,4 +44,4 @@ def _get_chrome_driver():
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
-    return webdriver.Chrome(chrome_options=chrome_options)
+    return webdriver.Chrome(options=chrome_options)
