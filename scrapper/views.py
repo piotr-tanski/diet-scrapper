@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from .models import get_diet
 import json
 
+
 def index(request):
     return HttpResponse('''
 <!DOCTYPE html>
