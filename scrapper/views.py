@@ -22,9 +22,9 @@ def index(request):
 function loadDiet(diet) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readState == XMLHttpRequest.LOADING) {
+    if (this.readyState == XMLHttpRequest.LOADING) {
         document.getElementById(diet).innerHTML = "Loading..."
-    } else if (this.readState == XMLHttpRequest.DONE) {
+    } else if (this.readyState == XMLHttpRequest.DONE) {
         if (this.status === 0 || (this.status >= 200 && this.status < 400)) {
           document.getElementById(diet).innerHTML = JSON.stringify(JSON.parse(this.responseText), null, 2);
         } else if (this.status >= 400 && this.status < 500) {
