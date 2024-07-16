@@ -22,9 +22,9 @@ def get_diet(diet):
 
 def _get_maczfit():
     meals = defaultdict(list)
-    driver = _get_chrome_driver()
     for diet in ['comfort', 'vege', 'fit', 'fodmap', 'no-lactose-&-low-gluten', 'diabetic', 'hypo-hashimoto']:
         print(f"Getting {diet} from maczfit")
+        driver = _get_chrome_driver()
         driver.get(f'https://www.maczfit.pl/programy-maczfit?diet={diet}&active=0')
         try:
             element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'menu__meals')))
