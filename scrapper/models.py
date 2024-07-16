@@ -28,15 +28,18 @@ def _get_maczfit():
         try:
             driver.get(f'https://www.maczfit.pl/programy-maczfit?diet={diet}&active=0')
             element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'menu__meals')))
+            if not element:
+                continue
+
             for e in driver.find_elements(By.CLASS_NAME, 'menu__meals'):
                 name = e.find_element(By.CLASS_NAME, 'meal__name').text
                 desc = e.find_element(By.CLASS_NAME, 'meal__description').text
                 if name and desc:
                     meals[name].append(desc)
-        except WebDriverException:
+        except TimeoutException:
             print(f"Couldn't get {diet} from maczfit!")
             pass
-        except TimeoutException:
+        except WebDriverException:
             print(f"Couldn't get {diet} from maczfit!")
             pass
     return meals
