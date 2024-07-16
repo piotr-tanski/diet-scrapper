@@ -48,4 +48,5 @@ def _get_chrome_driver():
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     return webdriver.Chrome(options=chrome_options)
